@@ -227,9 +227,11 @@
       if(Cliente=='',Cpf=='',Data=='',Email=='',Num=='',Vendedor=='',Veiculo==''){
         Form_Resp.style.color='red'
         Form_Resp.innerText = `Por favor Preencha todas as Lacunas e tente novamente`
+        form.reset()
       }else{
          Form_Resp.style.color = `Green`
          Form_Resp.innerText = `Registrado no Sistema com Sucesso!`
+         form.reset()
          
       }
     })
