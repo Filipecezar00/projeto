@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <link rel="stylesheet" href="dashboard.html">
+</head>
+<style>
+    #container2{
+        display: flex;
+        justify-content: flex-end;
+        margin: 20px;
+        flex-direction: column;
+             
+    }
+
+    #btn_claro{
+        align-self:flex-end;
+        margin: 5px;
+        padding: 10px;
+         border-radius: 50%;
+         background-color: white;
+         color: black;
+         font-weight: bold;
+         cursor: pointer;
+    }
+
+    #btn_escuro{
+        align-self:flex-end;
+        margin: 5px;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    #container{
+        display: flex; 
+        justify-content: center;
+        margin: 60px;
+    }
+    #form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        border: 5px solid black;
+        width: 300px;
+        margin: 50px;
+        padding: 10px;
+        border-radius: 10%;
+        background-color: rgb(197, 197, 66);
+    }
+     h1{
+        text-align: center;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 40px;
+    }
+    p{
+        font-size: 20px;
+    }
+    #idLogin{
+        padding: 10px;
+        border-radius: 10px;
+    }
+    #idSenha{
+        padding: 10px;
+        border-radius: 10px;       
+    }
+    #btn_logar{
+        padding: 5%;
+        border-radius: 20px;
+        align-self:center;
+        margin-left: 20px;
+    }
+    #logout{
+     display: flex;
+     justify-content:flex-end;
+     align-items:flex-end;
+
+    }
+    #exit{
+     cursor: pointer;
+     margin-right:40px;
+     
+    }
+</style>
+<body>
+    <div id="container2">
+        <input type="button" value="White" id="btn_claro">
+        <input type="button" value="Black" id="btn_escuro">
+    </div>
+    <div id="logout">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" id="exit" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
+     </div>
+    <div id="container">
+        <form id="form">
+            <h1>Tela Inicial</h1>
+            <p> Login:
+                <input type="text" required id="idLogin">
+            </p>
+            <p>Senha:
+                <input type="password" required id="idSenha">
+            </p>
+              <h3 id="respSenha"></h3>
+            <input type="submit" id="btn_logar" value="Logar">
+        
+    </form>
+  </div>
+
+    <script>
+        const idLogin = document.getElementById('idLogin')
+        const idSenha = document.getElementById("idSenha")
+        const btn_logar = document.getElementById("btn_logar")
+        const btn_claro = document.getElementById("btn_claro")
+        const btn_escuro = document.getElementById("btn_escuro")
+        const respSenha = document.getElementById('respSenha')
+        const btn_logout = document.getElementById("exit")
+        const form = document.getElementById("form")
+        
+        window.addEventListener('load',()=>{
+            const usuarioSalvo = localStorage.getItem('usuario')
+            if(usuarioSalvo){
+                respSenha.innerText = `Bem vindo Novamente ${usuarioSalvo}`
+            }
+        })
+
+        btn_claro.addEventListener('click',()=>{
+           document.body.style.backgroundColor = 'white'
+           document.body.style.color = 'Black'
+           btn_logout.setAttribute("fill",'black')
+           form.style.borderColor = 'black'
+        })
+        btn_escuro.addEventListener('click',()=>{
+            document.body.style.backgroundColor= 'black'
+            document.body.style.color= "white"
+            btn_logout.setAttribute("fill",'white')
+            form.style.borderColor = 'white'
+        })
+        btn_logar.addEventListener("click",(e)=>{
+            e.preventDefault()
+            let usuario = idLogin.value 
+            let senha = idSenha.value 
+
+            if(usuario== "Admin" && senha== '12345'){
+                localStorage.setItem("usuario",usuario)
+                respSenha.innerText = `login Correto. Bem-vindo, ${usuario}`
+                window.location.href = `dashboard.html`
+            }else if(usuario=='' && senha==''){
+                respSenha.innerText = `Por Favor, Preencha os campos.`  
+            } else {
+                respSenha.innerText = `Senha ou Login Incorretos`
+            }
+        })
+         btn_logout.addEventListener("click",()=>{
+            localStorage.removeItem("usuario")
+            respSenha.innerText = "Voce deslogou do sistema"
+         })
+        
+        
+    </script>
+</body>
+</html>

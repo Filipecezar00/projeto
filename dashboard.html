@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Page</title>
+</head>
+<style>
+  
+  *{
+    margin: 0px;
+    padding: 0px;
+  }
+  body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+  }
+  #logout{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin:30px;
+    width:30px;
+  
+  
+  }
+  #modos{ 
+    display: flex;
+    justify-content:center;
+    flex-direction:column;
+    flex-wrap: wrap;
+    align-items:center;
+    width: 50px;
+    
+  }
+  #btn_claro{
+   margin:10px ;
+   padding:10px;
+   border-radius: 50%;
+   cursor:pointer;
+  
+  }
+  #btn_escuro{
+   margin:10px ;
+   padding:10px;
+   border-radius: 50%;
+   background-color: black;
+   color:white;
+   cursor:pointer;
+  }
+
+  #exit{
+    cursor: pointer;
+    
+  }
+  #menuPrincipal{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    flex-direction:row;
+    flex-wrap: wrap;
+    background-color: black;
+    margin: 0px;
+    padding:0px ;
+  }
+  .menus{
+   text-decoration: none; 
+   background-color:rgb(197, 197, 66);
+   color: black;
+   margin: 10px;
+   width: 150px;
+   text-align: center;
+   border: 3px solid rgb(0, 0, 0);
+   border-radius:1px;
+   padding: 10px;
+  }
+  a:hover{
+    color:rgb(197, 197, 66);
+    background-color: black;
+  }
+  #titulo{
+    display: flex;
+    align-items: center;
+     justify-content: center;
+     text-align: center;
+  }
+  #container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    background-color:rgb(197, 197, 66) ;
+    padding: 20px;
+    margin: 50px auto;
+    border: 5px solid black;
+    border-radius: 10px;  
+    width:90%;
+    max-width:650px;
+    box-sizing: border-box;
+   
+  }
+  #form{
+     display: flex;
+     flex-direction:column;
+     align-items:center;
+     justify-content:center;
+     text-align: center;
+     margin: 5px;
+     width: 200px;
+  }
+  .itens{
+     margin: 10px;
+     text-align: center;
+     padding: 5px;
+     align-self: center;
+  }
+  #btn_concluir{
+    margin: 10px;
+    padding: 15px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: black;
+    color:rgb(197, 197, 66);
+    cursor: pointer;
+  }
+  #btn_concluir:hover{
+    color:black;
+    background-color: white;
+  }
+</style>
+
+<body>
+    
+    <div id="menuPrincipal">
+        <a href="dashboard.html" class="menus">Registro de Vendas</a>
+        <a href="#" class="menus">Veiculos Disponiveis</a>
+        <a href="#" class="menus">Registro de Clientes</a>
+        <a href="#" class="menus">Estoque de Veiculos </a>
+        <a href="#" class="menus">Agendar Manutenção</a>
+    </div>
+    
+     <div id="modos">
+      <input type="button" value="White" id="btn_claro">
+      <input type="button" value="Black" id="btn_escuro">
+     </div>
+
+      <div id="logout">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" id="exit" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
+     </div>
+     <div id="titulo">
+       <h1 id="title">SISTEMA DE REGISTRO DE VENDAS</h1>
+     </div>
+     <div id="container">
+      <form id="form">
+        <p> Nome do Vendedor: 
+          <input type="text" id="inVendedor"class="itens" required >
+        </p>
+        <p> Nome do cliente: 
+          <input type="text" id="inCliente" class="itens" required>
+        </p>
+        <p>Cpf do cliente: 
+          <input type="text" id="inCpf" class="itens" required>
+        </p>
+        <p>Número do cliente: 
+          <input type="tel" id="inNum" class="itens" required>
+        </p>
+        <p>Email do Cliente: 
+          <input type="email" id="inEmail" class="itens" required>
+        </p>
+        <p> Data da Venda: 
+          <input type="date" id="inData"class="itens" required>
+        </p>
+        <p>Modelo e Marca do Veiculo
+          <input type="text" id="inVeiculo"class="itens" required>
+        </p>
+      </form>
+        <input type="submit" value="Concluir Registro" id="btn_concluir">
+      <p id="Form_Resp">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, eveniet? Excepturi dolorem nam, temporibus perferendis nemo, voluptate doloribus nulla hic magnam corrupti voluptas praesentium iste perspiciatis sequi repellendus officiis fugit!</p>
+    </div>
+  
+  <script>     
+    const btn_logout = document.getElementById('exit')
+    const btn_claro = document.getElementById('btn_claro')
+    const btn_escuro = document.getElementById('btn_escuro')
+    const btn_concluir = document.getElementById('btn_concluir')
+    const form = document.getElementById("form")
+    const container = document.getElementById("container")
+    const Form_Resp = document.getElementById('Form_Resp')
+    const inVendedor = document.getElementById("inVendedor")
+    const inCliente = document.getElementById("inCliente").value
+    const inCpf = document.getElementById("inCpf").value
+    const inNum = document.getElementById("inNum").value
+    const inEmail = document.getElementById('inEmail').value
+    const inData = document.getElementById('inData').value
+    const inVeiculo = document.getElementById("inVeiculo").value
+
+    localStorage.getItem("usuario")
+    // alert("Bem Vindo ao Sistema da concessionaria!")
+    
+    btn_logout.addEventListener('click',()=>{
+        window.location.href = 'index.html'
+    })
+    btn_claro.addEventListener("click",()=>{
+      document.body.style.backgroundColor='white'   
+      document.body.style.color = 'black'
+      btn_logout.setAttribute('fill','black')
+      container.style.borderColor= 'black'
+    })
+
+    btn_escuro.addEventListener('click',()=>{
+      document.body.style.backgroundColor='black'
+      document.body.style.color='white'
+      btn_logout.setAttribute('fill','white')
+      container.style.borderColor='white'
+    })
+
+    btn_concluir.addEventListener("click",()=>{
+      if(inCliente==='',inCpf==='',inData==='',inEmail==='',inNum==='',inVendedor==='',inVeiculo==='')
+    })
+
+    
+  </script>
+</body>
+</html>
