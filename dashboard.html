@@ -175,7 +175,7 @@
         </p>
       </form>
         <input type="submit" value="Concluir Registro" id="btn_concluir">
-      <p id="Form_Resp">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, eveniet? Excepturi dolorem nam, temporibus perferendis nemo, voluptate doloribus nulla hic magnam corrupti voluptas praesentium iste perspiciatis sequi repellendus officiis fugit!</p>
+      <p id="Form_Resp"></p>
     </div>
   
   <script>     
@@ -187,12 +187,12 @@
     const container = document.getElementById("container")
     const Form_Resp = document.getElementById('Form_Resp')
     const inVendedor = document.getElementById("inVendedor")
-    const inCliente = document.getElementById("inCliente").value
-    const inCpf = document.getElementById("inCpf").value
-    const inNum = document.getElementById("inNum").value
-    const inEmail = document.getElementById('inEmail').value
-    const inData = document.getElementById('inData').value
-    const inVeiculo = document.getElementById("inVeiculo").value
+    const inCliente = document.getElementById("inCliente")
+    const inCpf = document.getElementById("inCpf")
+    const inNum = document.getElementById("inNum")
+    const inEmail = document.getElementById('inEmail')
+    const inData = document.getElementById('inData')
+    const inVeiculo = document.getElementById("inVeiculo")
 
     localStorage.getItem("usuario")
     // alert("Bem Vindo ao Sistema da concessionaria!")
@@ -215,8 +215,25 @@
     })
 
     btn_concluir.addEventListener("click",()=>{
-      if(inCliente==='',inCpf==='',inData==='',inEmail==='',inNum==='',inVendedor==='',inVeiculo==='')
+      let Cliente = inCliente.value 
+      let Cpf = inCpf.value
+      let Vendedor = inVendedor.value 
+      let Num = inNum.value 
+      let Email = inEmail.value 
+      let Data = inData.value 
+      let Veiculo = inVeiculo.value 
+  
+
+      if(Cliente=='',Cpf=='',Data=='',Email=='',Num=='',Vendedor=='',Veiculo==''){
+        Form_Resp.style.color='red'
+        Form_Resp.innerText = `Por favor Preencha todas as Lacunas e tente novamente`
+      }else{
+         Form_Resp.style.color = `Green`
+         Form_Resp.innerText = `Registrado no Sistema com Sucesso!`
+         
+      }
     })
+  
 
     
   </script>

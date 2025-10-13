@@ -76,6 +76,7 @@
         border-radius: 20px;
         align-self:center;
         margin-left: 20px;
+        cursor: pointer;
     }
     #logout{
      display: flex;
@@ -125,7 +126,7 @@
         window.addEventListener('load',()=>{
             const usuarioSalvo = localStorage.getItem('usuario')
             if(usuarioSalvo){
-                respSenha.innerText = `Bem vindo Novamente ${usuarioSalvo}`
+               alert(`Bem vindo Novamente ${usuarioSalvo}`)  
             }
         })
 
