@@ -127,6 +127,50 @@
     color:black;
     background-color: white;
   }
+  #box_form{
+    display: flex;
+    justify-content:flex-start;
+    align-items:flex-start;
+    flex-direction:row;
+    flex-wrap: nowrap;
+    border:2px solid black;
+    width: 90%;
+    height: 300px;
+    margin: 0 auto;
+    padding: 10px;
+     
+  }
+  .dados{
+    background-color:rgb(197, 197, 66);
+    width:40%;
+    height:100px;
+    text-align: center;
+    margin: 50px;
+    display:flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 5px;
+    border: 3px solid black;
+    
+  }
+  #title{
+    text-align: center;
+    margin: 10px;
+  }
+  .fonte{
+    text-align: left;
+    font-size: 10px;
+    
+  }
+  #btn_excluir{
+    padding: 5px;
+    margin: 5px;
+  }
+  #btn_editar{
+    padding: 5px;
+    margin: 5px;
+
+  }
 </style>
 
 <body>
@@ -153,31 +197,38 @@
      <div id="container">
       <form id="form">
         <p> Nome do Vendedor: 
-          <input type="text" id="inVendedor"class="itens" required >
+          <input type="text" id="inVendedor"class="itens" required placeholder="Digite o Nome Completo">
         </p>
         <p> Nome do cliente: 
-          <input type="text" id="inCliente" class="itens" required>
+          <input type="text" id="inCliente" class="itens" required placeholder="Digite o nome Completo">
         </p>
         <p>Cpf do cliente: 
-          <input type="text" id="inCpf" class="itens" required>
+          <input type="text" id="inCpf" class="itens" required placeholder="Digite o CPF ">
         </p>
         <p>Número do cliente: 
-          <input type="tel" id="inNum" class="itens" required>
+          <input type="tel" id="inNum" class="itens" required placeholder="(xx)xxxx-xxxx">
         </p>
         <p>Email do Cliente: 
-          <input type="email" id="inEmail" class="itens" required>
+          <input type="email" id="inEmail" class="itens" required placeholder="usuario@gmail.com">
         </p>
         <p> Data da Venda: 
-          <input type="date" id="inData"class="itens" required>
+          <input type="date" id="inData"class="itens" required placeholder="xx/xx/xxxx">
         </p>
         <p>Modelo e Marca do Veiculo
-          <input type="text" id="inVeiculo"class="itens" required>
+          <input type="text" id="inVeiculo"class="itens" required placeholder="Modelo e Marca">
         </p>
+         <input type="submit" value="Concluir Registro" id="btn_concluir">
       </form>
-        <input type="submit" value="Concluir Registro" id="btn_concluir">
       <p id="Form_Resp"></p>
     </div>
-  
+    <h3 id="title">Dados Cadastrados</h3>
+     <div id="box_form"> 
+       <div class="dados"> <button id="btn_excluir">Excluir</button> <button id="btn_editar">Editar</button>
+        <p id="resp"></p>
+      </div>
+     </div>
+
+
   <script>     
     const btn_logout = document.getElementById('exit')
     const btn_claro = document.getElementById('btn_claro')
@@ -193,6 +244,12 @@
     const inEmail = document.getElementById('inEmail')
     const inData = document.getElementById('inData')
     const inVeiculo = document.getElementById("inVeiculo")
+    const dados = document.getElementsByClassName("dados")
+    const resp = document.getElementById("resp")
+    const btn_editar = document.getElementById("btn_editar")
+    const btn_excluir = document.getElementById("btn_excluir")
+    const box_form = document.getElementById("box_form")
+    
 
     localStorage.getItem("usuario")
     // alert("Bem Vindo ao Sistema da concessionaria!")
@@ -205,6 +262,7 @@
       document.body.style.color = 'black'
       btn_logout.setAttribute('fill','black')
       container.style.borderColor= 'black'
+      box_form.style.borderColor = 'black'
     })
 
     btn_escuro.addEventListener('click',()=>{
@@ -212,9 +270,12 @@
       document.body.style.color='white'
       btn_logout.setAttribute('fill','white')
       container.style.borderColor='white'
+      box_form.style.borderColor = 'white'
+      dados.style.borderColor = 'white'
     })
 
-    btn_concluir.addEventListener("click",()=>{
+    form.addEventListener("submit",(e)=>{
+      e.preventDefault()
       let Cliente = inCliente.value 
       let Cpf = inCpf.value
       let Vendedor = inVendedor.value 
@@ -224,18 +285,23 @@
       let Veiculo = inVeiculo.value 
   
 
-      if(Cliente=='',Cpf=='',Data=='',Email=='',Num=='',Vendedor=='',Veiculo==''){
+      if(Cliente==''|| Cpf==''|| Data==''|| Email==''|| Num==''|| Vendedor==''|| Veiculo==''){
         Form_Resp.style.color='red'
         Form_Resp.innerText = `Por favor Preencha todas as Lacunas e tente novamente`
         form.reset()
       }else{
          Form_Resp.style.color = `Green`
          Form_Resp.innerText = `Registrado no Sistema com Sucesso!`
+         const dados = document.createElement("div")
+         dados.setAttribute('class','dados')
+         dados.innerText = `Vendedor: ${Vendedor}\n Cliente:${Cliente}\n CPF:${Cpf}\n Número Cliente: ${Num}\n Email do Cliente: ${Email}\n Data da venda: ${Data}\n Modelo e Marca:${Veiculo}`
          form.reset()
-         
       }
+      
+      // resp.innerText = 
+     
     })
-  
+     
 
     
   </script>
