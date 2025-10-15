@@ -150,12 +150,17 @@
             if(usuario== "Admin" && senha== '12345'){
                 localStorage.setItem("usuario",usuario)
                 respSenha.innerText = `login Correto. Bem-vindo, ${usuario}`
+                respSenha.style.color = 'green'
                 window.location.href = `dashboard.html`
-            }else if(usuario=='' && senha==''){
+            }else if(usuario=='' && senha==''|| usuario=='' || senha==''){
                 respSenha.innerText = `Por Favor, Preencha os campos.`  
-            } else {
+                return
+            }else {
+                respSenha.style.color = 'red'
                 respSenha.innerText = `Senha ou Login Incorretos`
+                return
             }
+             
         })
          btn_logout.addEventListener("click",()=>{
             localStorage.removeItem("usuario")
