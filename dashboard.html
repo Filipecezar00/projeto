@@ -165,11 +165,28 @@
   #btn_excluir{
     padding: 5px;
     margin: 5px;
+    border-radius: 5px;
+    background-color: black;
+    color:rgb(197, 197, 66);
+    cursor: pointer;
+  }
+  #btn_excluir:hover{
+    color:rgb(255, 255, 255);
+    background-color: rgb(255, 0, 0);
+  }
+  #btn_editar:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(38, 0, 255);
   }
   #btn_editar{
     padding: 5px;
     margin: 5px;
+    border-radius: 5px;
+    background-color: black;
+    color:rgb(197, 197, 66);
+    cursor: pointer;
   }
+
   #text{
     font-size: 11px;
     text-align: left;
@@ -295,18 +312,45 @@
       if(Cliente==''|| Cpf==''|| Data==''|| Email==''|| Num==''|| Vendedor==''|| Veiculo==''){
         Form_Resp.style.color='red'
         Form_Resp.innerText = `Por favor Preencha todas as Lacunas e tente novamente`
-        form.reset()
       }else{
          Form_Resp.style.color = `Green`
          Form_Resp.innerText = `Registrado no Sistema com Sucesso!`
          text.innerText = `Vendedor: ${Vendedor}\n Cliente:${Cliente}\n CPF:${Cpf}\n Número Cliente: ${Num}\n Email do Cliente: ${Email}\n Data da venda: ${Data}\n Modelo e Marca:${Veiculo}`
          form.reset()
       }
+ })    
       
-     
-     
-    })
-     
+      btn_excluir.addEventListener("click",()=>{
+      let texto = text.innerText=''
+      Form_Resp.style.color = 'red'
+      Form_Resp.innerText = `Registro excluido com Sucesso!`
+      })
+      
+      btn_editar.addEventListener("click",()=>{
+        // Pegar o texto atual e excluir os dados
+        const dadosTexto = text.innerText 
+
+        if(!dadosTexto.trim()){
+          Form_Resp.style.color = 'red'
+          Form_Resp.innerText = 'Nenhum dado para editar'
+          return
+        }
+        //Extração de dados com base no texto formato
+        const linhas = dadosTexto.split("\n").map(l=>l.split(":").map(p=>p.trim()))
+        const mapa = Object.fromEntries(linhas) 
+
+        inVendedor.value = mapa['Vendedor']||''
+        inCliente.value = mapa['Cliente']||''
+        inCpf.value = mapa['CPF']||''
+        inNum.value = mapa['Número Cliente']||''
+        inEmail.value = mapa['Email do cliente']||''
+        inData.value = mapa['Data da venda']||''
+        inVeiculo.value = mapa['Modelo e Marca']||''
+
+        //Mensagem de feedback
+        Form_Resp.style.color = 'blue'
+        Form_Resp.innerText = 'Registro pronto para edição'
+      })
 
     
   </script>
