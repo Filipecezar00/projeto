@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veiculos disponiveis</title>
+</head>
+<body>
+<style>
+    *{
+    margin: 0px;
+    padding: 0px
+    }
+#menuPrincipal{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap:wrap;
+    background-color: black;
+    margin: 0px;
+    padding: 0px;
+}
+.menus{
+    text-decoration: none;
+background-color: rgb(197, 197, 66);
+    color:black;
+    width: 150px;
+    text-align: center;
+    padding:7px;
+    margin: 10px;
+    border-radius: 1px;
+    border: 3px solid black;
+    font-weight:bolder;
+    font-size: 14px;
+    border-radius: 10px;
+}
+a:hover{
+    background-color: black;
+    color:rgb(197, 197, 66);
+}
+
+#esp_cores{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items:center;
+flex-wrap: wrap;
+width: 50px;
+
+
+}
+
+#btn_claro{
+margin: 10px;
+background-color: white;
+color:black;
+border-radius: 50%;
+padding: 8px;
+cursor: pointer;
+border: 1px solid black;
+
+}
+#btn_escuro{
+margin: 10px;
+background-color: black;
+color: white;
+border-radius: 50%;
+padding: 8px;
+cursor: pointer;
+border: 1px solid black;
+}
+#exit{
+margin: 15px;
+padding: 10px;
+cursor: pointer;
+}
+#titulo{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction:row;
+
+}
+#titulo_principal{
+text-align:center;
+}
+#disponiveis{
+    display: flex;
+    justify-content:center;
+    justify-items: center;
+    align-items: center;
+    margin: 10px;
+}
+#btn_novos{
+margin: 10px;
+padding: 10px;
+border: 3px solid black;
+border-radius: 20px;
+cursor: pointer;
+background-color: rgb(197, 197, 66);
+font-weight: bolder;
+
+
+}
+
+#btn_seminovos{
+margin: 10px;
+padding: 10px;
+border: 3px solid black;
+border-radius: 20px;
+cursor: pointer;
+background-color: rgb(197, 197, 66);
+font-weight: bolder;
+}
+#btn_novos:hover{
+    background-color: rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
+}
+#btn_seminovos:hover{
+    background-color: rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
+}
+#veiculos_gerais{
+display: flex;
+flex-direction:row;
+align-items:center;
+justify-content:space-around;
+flex-wrap:wrap;
+}
+.veiculo{
+ padding: 30px;
+ margin: 20px;
+ border: 5px solid black;
+ border-radius: 10px;
+ cursor: pointer;
+}
+img{
+    transition: transform 0.1s ease;
+}
+img:hover{
+    transform:rotate(1deg);
+}
+#fiat{
+width:290px;
+height: 170px;
+}
+
+#polo{
+ width:290px;
+ height: 170px;
+}
+#kwid{
+ width:290px;
+ height: 170px;
+}
+#creta{
+  width:290px;
+  height: 170px;
+}
+#hb20{
+  width:290px;
+  height: 170px;
+}
+#creta{
+  width:290px;  
+  height: 170px;
+}
+#chevrolet{
+   width:290px;
+   height: 170px;
+}
+#mobi{
+   width:290px;
+   height: 170px;
+}
+#toro{
+   width:290px;
+   height: 170px;
+}
+p{
+    font-weight: bolder;
+    text-align:left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.price{
+    
+}
+.desc{
+    display: flex;
+    justify-content:flex-start;
+    align-items:flex-start;
+    justify-items: flex-start;
+    flex-direction: column;
+    flex-wrap:wrap;
+}
+.btn_comprar{
+    align-self: flex-end;
+    padding: 10px;
+    border-radius: 10px;
+    border:5px solid #000000;
+    background-color: rgba(0, 190, 32, 0.815);
+    color: rgb(0, 0, 0);
+    cursor:pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: transform 0.3 ease;
+}
+.btn_comprar:hover{
+    transform:rotate(3deg);
+}
+
+.carrinho{
+     margin-left:15px;
+     transition: transform 0.3 ease;
+}
+
+.carrinho:hover{
+    transform: rotate(3deg);
+}
+
+</style>
+    <div id="menuPrincipal">
+        <a href="dashboard.html" class="menus">Registro de Vendas</a>
+        <a href="veiculos.html" class="menus">Veiculos Disponiveis</a>
+        <a href="#" class="menus">Registro de Clientes</a>
+        <a href="#" class="menus">Estoque de Veiculos</a>
+        <a href="#" class="menus">Agendar Manutenção</a>
+    </div>
+    <div id="esp_cores">
+        <input type="button" value="White" id="btn_claro">
+        <input type="button" value="Black" id="btn_escuro">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" id="exit" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
+    </div>
+
+     <div id="titulo">
+        <h3 id="titulo_principal">Carros Novos e Seminovos Disponiveis</h3>
+     </div>
+
+     <div id="disponiveis">
+         <input type="button" value="Novos" id="btn_novos"> ---
+         <input type="button" value="Seminovos" id="btn_seminovos">
+     </div>
+
+     <div id="veiculos_gerais">
+        <div class="veiculo" class="novo">
+        <img src="fiat.jfif" alt="" id="fiat">
+
+        <div class="desc">
+            <p>Fiat-Cross</p>
+            <p>2025</p>
+            <p>R$ 57,900</p>
+            <input type="button" value="Comprar Agora" class="btn_comprar">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#48752C" class="carrinho"><path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/></svg>
+            </div>
+        </div>
+
+        <div class="veiculo" class="seminovo" >
+         <img src="gol-removebg-preview.png" alt="" id="polo"> 
+
+         <div class="desc">
+             <p>Polo-Tracker</p>
+             <P>2023</P>
+             <p>R$ 67,300</p>
+           <input type="button" value="Comprar Agora" class="btn_comprar">
+           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="carrinho" fill="#48752C"><path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/></svg>
+         </div>
+
+        </div>
+
+        <div class="veiculo" class="novo">
+        <img src="image.png" alt="" id="kwid">
+
+        <div class="desc">
+            <p>Renault-kwid</p>
+            <P>2020</P>
+            <p>R$ 50,000</p>
+            <input type="button" value="Comprar Agora" class="btn_comprar">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#48752C" class="carrinho"><path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/></svg>
+        </div>
+        </div>
+
+        <div class="veiculo" class="seminovo">
+        <img src="hb20.jfif" alt="" id="hb20">
+
+        <div class="desc" >
+            <p>Hunday-HB20</p>
+             <P>2021</P>
+             <p>R$ 80,000</p>
+            <input type="button" value="Comprar Agora" class="btn_comprar">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#48752C" class="carrinho"><path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/></svg>
+            </div>
+        </div>
+
+        <div class="veiculo" class="novo">
+        <img src="creta.jfif" alt="" id="creta">
+        <div class="desc">
+            <p>Hunday-Creta</p>
+            <P>2021</P>
+            <p>R$ 117,980</p>
+            <input type="button" value="Comprar Agora" class="btn_comprar">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#48752C" class="carrinho"><path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/></svg>
+            </div>
+        </div>
+
+        <div class="veiculo" class="seminovo">
+        <img src="chevrolet.png" alt="" id="chevrolet">
+
+        <div class="desc">
+            <p>Chevrolet-Tcar</p>
+            <P>2025</P>
+            <p>R$ 87,900</p>
+            <input type="button" value="Comprar Agora" class="btn_comprar">
+             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#48752C" class="carrinho"><path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/></svg>
+            </div>
+        </div>
+
+        <div class="veiculo" class="novo">
+        <img src="mobi.jfif" alt="" id="mobi">
+
+        <div class="desc">
+            <p>Fiat-Mobi</p>
+            <P>2020</P>
+            <p>R$ 50,000</p>
+            <input type="button" value="Comprar Agora" class="btn_comprar">
+             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#48752C" class="carrinho"><path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/></svg>
+        </div>
+        </div>
+
+        <div class="veiculo" class="seminovo">
+        <img src="toro.png" alt="" id="toro">
+
+        <div class="desc">
+            <p>Fiat-Toro</p>
+            <P>2021</P>
+            <p>R$ 90,000</p>
+            <input type="button" value="Comprar Agora" class="btn_comprar">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#48752C" class="carrinho"><path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/></svg>
+        </div>
+        </div>
+     </div>
+<script>
+
+</script>
+</body>
+</html>
