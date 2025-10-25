@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veiculos disponiveis</title>
+    <link rel="stylesheet" href="index.html">
+    <link rel="stylesheet" href="dashboard.html">
 </head>
 <body>
 <style>
@@ -339,7 +341,82 @@ p{
         </div>
      </div>
 <script>
+    const btn_claro = document.getElementById("btn_claro")
+    const btn_escuro = document.getElementById("btn_escuro")
+    const exit = document.getElementById("exit")
+    const btn_comprar = document.getElementsByClassName("btn_comprar")
+    const carrinho = document.getElementsByClassName("carrinho")
+    const btn_novos = document.getElementById("btn_novos")
+    const btn_seminovos = document.getElementById("btn_seminovos")
+    const veiculo = document.getElementsByClassName("veiculo")
+    const novo = document.getElementsByClassName("novo")
+    const seminovo = document.getElementsByClassName("seminovo")
 
+    btn_claro.addEventListener("click",()=>{
+     document.body.style.backgroundColor = 'white'
+     document.body.style.color = 'black'
+     exit.setAttribute("fill",'black')
+     btn_novos.style.borderColor = 'black'
+     btn_seminovos.style.borderColor = 'black'
+
+      for(const value of veiculo){
+        value.style.borderColor = 'black'
+      }
+
+      for(const value of btn_comprar){
+        value.style.borderColor = 'black'
+      }
+    })
+
+    btn_escuro.addEventListener('click',()=>{
+        document.body.style.backgroundColor = 'black'
+        document.body.style.color = 'white'
+        exit.setAttribute("fill",'white')
+        btn_seminovos.style.borderColor = "white"
+        btn_novos.style.borderColor = 'white'
+      
+        for(const value of veiculo){
+            value.style.borderColor = 'white'
+        }
+
+        for(const value of btn_comprar){
+            value.style.borderColor = 'white'
+        }
+
+    })
+
+    exit.addEventListener("click",()=>{
+        window.location.href = 'index.html'
+    })
+
+    btn_comprar.addEventListener("click",()=>{
+       
+    })
+    
+    carrinho.addEventListener("click",()=>{
+        
+    })
+    btn_novos.addEventListener("click",()=>{
+        for(let i = 0; i<veiculo.length;i++){
+          if(veiculo[i].classList.contains(`novo`)){
+            veiculo[i].style.display = `block`
+           }else{
+            veiculo[i].style.display = `none`
+         }
+        }
+       })
+       
+    btn_seminovos.addEventListener("click",()=>{
+        for(let i = 0;i<veiculo.length;i++){
+        if(veiculo[i].classList.contains('seminovo')){
+         veiculo[i].style.display = `block`
+        }else{
+          veiculo[i].style.display = `none`
+        }
+    }
+        
+  })    
+    
 </script>
 </body>
 </html>
