@@ -115,6 +115,16 @@ cursor: pointer;
 background-color: rgb(197, 197, 66);
 font-weight: bolder;
 }
+#btn_todos{
+margin: 10px;
+padding: 10px;
+border: 3px solid black;
+border-radius: 20px;
+cursor: pointer;
+background-color: rgb(197, 197, 66);
+font-weight: bolder;
+}
+
 #btn_novos:hover{
     background-color: rgb(255, 255, 255);
     color:rgb(0, 0, 0);
@@ -130,13 +140,21 @@ align-items:center;
 justify-content:space-around;
 flex-wrap:wrap;
 }
-.veiculo{
+.veiculoNovo{
  padding: 30px;
  margin: 20px;
  border: 5px solid black;
  border-radius: 10px;
  cursor: pointer;
 }
+.veiculoSeminovo{
+ padding: 30px;
+ margin: 20px;
+ border: 5px solid black;
+ border-radius: 10px;
+ cursor: pointer;
+}
+
 img{
     transition: transform 0.1s ease;
 }
@@ -239,12 +257,13 @@ p{
      </div>
 
      <div id="disponiveis">
+         <input type="button" value="Todos" id="btn_todos"> ---
          <input type="button" value="Novos" id="btn_novos"> ---
          <input type="button" value="Seminovos" id="btn_seminovos">
      </div>
 
      <div id="veiculos_gerais">
-        <div class="veiculo" class="novo">
+        <div class="veiculoNovo">
         <img src="fiat.jfif" alt="" id="fiat">
 
         <div class="desc">
@@ -256,7 +275,7 @@ p{
             </div>
         </div>
 
-        <div class="veiculo" class="seminovo" >
+        <div class="veiculoSeminovo" >
          <img src="gol-removebg-preview.png" alt="" id="polo"> 
 
          <div class="desc">
@@ -269,7 +288,7 @@ p{
 
         </div>
 
-        <div class="veiculo" class="novo">
+        <div class="veiculoNovo">
         <img src="image.png" alt="" id="kwid">
 
         <div class="desc">
@@ -281,7 +300,7 @@ p{
         </div>
         </div>
 
-        <div class="veiculo" class="seminovo">
+        <div class="veiculoSeminovo">
         <img src="hb20.jfif" alt="" id="hb20">
 
         <div class="desc" >
@@ -293,7 +312,7 @@ p{
             </div>
         </div>
 
-        <div class="veiculo" class="novo">
+        <div class="veiculoNovo">
         <img src="creta.jfif" alt="" id="creta">
         <div class="desc">
             <p>Hunday-Creta</p>
@@ -304,7 +323,7 @@ p{
             </div>
         </div>
 
-        <div class="veiculo" class="seminovo">
+        <div class="veiculoSeminovo">
         <img src="chevrolet.png" alt="" id="chevrolet">
 
         <div class="desc">
@@ -316,7 +335,7 @@ p{
             </div>
         </div>
 
-        <div class="veiculo" class="novo">
+        <div class="veiculoNovo">
         <img src="mobi.jfif" alt="" id="mobi">
 
         <div class="desc">
@@ -328,7 +347,7 @@ p{
         </div>
         </div>
 
-        <div class="veiculo" class="seminovo">
+        <div class="veiculoSeminovo">
         <img src="toro.png" alt="" id="toro">
 
         <div class="desc">
@@ -348,9 +367,8 @@ p{
     const carrinho = document.getElementsByClassName("carrinho")
     const btn_novos = document.getElementById("btn_novos")
     const btn_seminovos = document.getElementById("btn_seminovos")
-    const veiculo = document.getElementsByClassName("veiculo")
-    const novo = document.getElementsByClassName("novo")
-    const seminovo = document.getElementsByClassName("seminovo")
+    const btn_todos = document.getElementById("btn_todos")
+    const todosOsVeiculos = document.querySelectorAll('.veiculoNovo , .veiculoSeminovo')
 
     btn_claro.addEventListener("click",()=>{
      document.body.style.backgroundColor = 'white'
@@ -358,8 +376,13 @@ p{
      exit.setAttribute("fill",'black')
      btn_novos.style.borderColor = 'black'
      btn_seminovos.style.borderColor = 'black'
+     btn_todos.style.borderColor = 'black'
 
-      for(const value of veiculo){
+      for(const value of todosOsVeiculos){
+        value.style.borderColor = 'black'
+      }
+
+      for(const value of todosOsVeiculos){
         value.style.borderColor = 'black'
       }
 
@@ -374,10 +397,17 @@ p{
         exit.setAttribute("fill",'white')
         btn_seminovos.style.borderColor = "white"
         btn_novos.style.borderColor = 'white'
-      
-        for(const value of veiculo){
+        btn_todos.style.borderColor = 'white'
+
+        for(const value of todosOsVeiculos){
             value.style.borderColor = 'white'
         }
+
+        for(const value of todosOsVeiculos){
+            value.style.borderColor = 'white'
+        }
+
+
 
         for(const value of btn_comprar){
             value.style.borderColor = 'white'
@@ -389,33 +419,80 @@ p{
         window.location.href = 'index.html'
     })
 
-    btn_comprar.addEventListener("click",()=>{
-       
+   for(const botao of btn_comprar){
+    botao.addEventListener("click",()=>{
+
     })
+   }
     
-    carrinho.addEventListener("click",()=>{
+   for(const iconeCarrinho of carrinho){
+    iconeCarrinho.addEventListener("click",()=>{
         
     })
-    btn_novos.addEventListener("click",()=>{
-        for(let i = 0; i<veiculo.length;i++){
-          if(veiculo[i].classList.contains(`novo`)){
-            veiculo[i].style.display = `block`
-           }else{
-            veiculo[i].style.display = `none`
-         }
+   }
+
+    function filtrarVeiculos(tipoDeCarro){
+        todosOsVeiculos.forEach(veiculo=>{
+            if(tipoDeCarro==="todos"){
+                veiculo.style.display = ''
+                return 
+            }
+        const classeAlvo = `veiculo${tipoDeCarro}`
+
+        if(veiculo.classList.contains(classeAlvo)){
+            veiculo.style.display = ""
+        } else {
+            veiculo.style.display = 'none'
         }
-       })
+     })
+}
+
+     btn_todos.addEventListener("click",()=> filtrarVeiculos("todos"))
+     btn_novos.addEventListener("click",()=>filtrarVeiculos("Novo"))
+     btn_seminovos.addEventListener("click",()=>filtrarVeiculos ("Seminovo"))
+
+    //     let veiculos = todos
+    //     for(let i = 0; i<veiculos.length;i++){
+    //         if(veiculos[i].classList.contains(`novo`)){
+    //             novo.style.display = ``
+    //             seminovo.style.display = `none`
+    //         }else if(veiculos[i].classList.contains(`seminovo`)) {
+    //             novo.style.display = `none`
+    //             seminovo.style.display = ``
+    //         } else if (veiculos[i].classList.contains(`todos`)){
+    //             novo.style.display = ``
+    //             seminovo.style.display = ``
+    //         }
+    //     }
+    // }
+    // btn_todos.addEventListener("click",()=>filtrarVeiculos("todos"))
+    // btn_novos.addEventListener('click',()=>filtrarVeiculos('novo')) 
+    // btn_seminovos.addEventListener("click",()=>filtrarVeiculos("seminovo"))
+
+
+
+
+
+    // btn_novos.addEventListener("click",()=>{
+    //     for(let i = 0; i<veiculo.length;i++){
+    //       if(veiculo[i].classList.contains(`novo`)){
+    //         veiculo[i].style.display = ``
+    //        }else{
+    //         veiculo[i].style.display = `none`
+    //      }
+    //     }
+    //    })
        
-    btn_seminovos.addEventListener("click",()=>{
-        for(let i = 0;i<veiculo.length;i++){
-        if(veiculo[i].classList.contains('seminovo')){
-         veiculo[i].style.display = `block`
-        }else{
-          veiculo[i].style.display = `none`
-        }
-    }
+    // btn_seminovos.addEventListener("click",()=>{
+    //     for(let i = 0;i<veiculo.length;i++){
+    //     if(veiculo[i].classList.contains('seminovo')){
+    //      veiculo[i].style.display = ``
+    //     }else{
+    //       veiculo[i].style.display = `none`
+    //     }
+    // }
         
-  })    
+//   })    
     
 </script>
 </body>
