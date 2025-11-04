@@ -374,7 +374,8 @@ p{
     const btn_todos = document.getElementById("btn_todos")
     const todosOsVeiculos = document.querySelectorAll('.veiculoNovo , .veiculoSeminovo')
     const carrinhoClicado = [] 
-    const carrinhoDeCompras = []
+    let carrinhoDeCompras = []
+    const  resumoCarrinho = document.getElementById("resumo-carrinho")
 
     btn_claro.addEventListener("click",()=>{
      document.body.style.backgroundColor = 'white'
@@ -430,13 +431,8 @@ p{
 
     })
    }
- 
   
- function salvarEAtualizarCarrinho(carro){
-    const resumoCarrinho = document.getElementById("resumo-carrinho")
-    carrinhoDeCompras.push(carro) 
-    // Adicionando novo Objeto/Carro no vetor global 
-     function renderizarCarrinho(){
+ function renderizarCarrinho(){
     let novoHTML = "<h4> Seu Carrinho de Compras </h4>"; 
     // Variável que constroi o novo html 
 
@@ -460,11 +456,32 @@ p{
         resumoCarrinho.style.display = 'block'
     }
  }
+
+  
+ function salvarEAtualizarCarrinho(carro){
+    carrinhoDeCompras.push(carro) 
+    // Adicionando novo Objeto/Carro no vetor global 
+
     // Chamada de Função 
     renderizarCarrinho();
 
   
  }
+
+  
+
+ function removerItem(idDoCarro){
+    let novoCarrinho = carrinhoDeCompras.filter(item=>{
+        if(item.id !==idDoCarro){
+            return true
+        }else {
+            return false 
+        }
+    })
+    carrinhoDeCompras = novoCarrinho  
+     renderizarCarrinho()
+ }
+  
 
   function extrairDadosDoCarro(veiculoClicado){
   const dados= veiculoClicado.querySelector('.desc')
@@ -475,9 +492,9 @@ p{
   const preco = informacoes[2].textContent; 
 
   const carro = {
-    nomeCarro: nome, 
-    anoCarro: ano , 
-    precoCarro:preco, 
+    nome: nome, 
+    ano: ano , 
+    preco:preco, 
     
     id:nome + ano
   }; 
