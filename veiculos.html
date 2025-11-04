@@ -237,7 +237,10 @@ p{
 .carrinho:hover{
     transform: rotate(3deg);
 }
+#resumo-carrinho{
+    display: none;
 
+}
 </style>
     <div id="menuPrincipal">
         <a href="dashboard.html" class="menus">Registro de Vendas</a>
@@ -359,6 +362,7 @@ p{
         </div>
         </div>
      </div>
+     <div id="resumo-carrinho"></div>
 <script>
     const btn_claro = document.getElementById("btn_claro")
     const btn_escuro = document.getElementById("btn_escuro")
@@ -369,6 +373,8 @@ p{
     const btn_seminovos = document.getElementById("btn_seminovos")
     const btn_todos = document.getElementById("btn_todos")
     const todosOsVeiculos = document.querySelectorAll('.veiculoNovo , .veiculoSeminovo')
+    const carrinhoClicado = [] 
+    const carrinhoDeCompras = []
 
     btn_claro.addEventListener("click",()=>{
      document.body.style.backgroundColor = 'white'
@@ -424,10 +430,66 @@ p{
 
     })
    }
+ 
+  
+ function salvarEAtualizarCarrinho(carro){
+    const resumoCarrinho = document.getElementById("resumo-carrinho")
+    carrinhoDeCompras.push(carro) 
+    // Adicionando novo Objeto/Carro no vetor global 
+     function renderizarCarrinho(){
+    let novoHTML = "<h4> Seu Carrinho de Compras </h4>"; 
+    // Variável que constroi o novo html 
+
+    // Iterando Sobre Cada Item do Array 
+    carrinhoDeCompras.forEach(item=>{
+        novoHTML+= `
+        <div class = "item-carrinho"> 
+            <p><strong>${item.nome}</strong> (${item.ano})</p> 
+            <p>${item.preco}</p> 
+            <button onclick = "removerItem('${item.id}')">X</button>
+            </div> 
+            <hr>
+        `
+    });
+
+    if(carrinhoDeCompras.length === 0){
+        novoHTML+='<p>O carrinho está vazio.</p>'; 
+        resumoCarrinho.style.display = "none"
+    }else {
+        resumoCarrinho.innerHTML = novoHTML;
+        resumoCarrinho.style.display = 'block'
+    }
+ }
+    // Chamada de Função 
+    renderizarCarrinho();
+
+  
+ }
+
+  function extrairDadosDoCarro(veiculoClicado){
+  const dados= veiculoClicado.querySelector('.desc')
+  const informacoes = dados.querySelectorAll("p")
+
+  const nome = informacoes[0].textContent; 
+  const ano = informacoes[1].textContent; 
+  const preco = informacoes[2].textContent; 
+
+  const carro = {
+    nomeCarro: nome, 
+    anoCarro: ano , 
+    precoCarro:preco, 
     
+    id:nome + ano
+  }; 
+
+    salvarEAtualizarCarrinho(carro) 
+  }
+
+ 
    for(const iconeCarrinho of carrinho){
-    iconeCarrinho.addEventListener("click",()=>{
-        
+    iconeCarrinho.addEventListener("click",(event)=>{
+     const veiculoClicado = event.target.closest(".veiculoNovo , .veiculoSeminovo"); 
+     extrairDadosDoCarro(veiculoClicado)
     })
    }
 
@@ -451,48 +513,7 @@ p{
      btn_novos.addEventListener("click",()=>filtrarVeiculos("Novo"))
      btn_seminovos.addEventListener("click",()=>filtrarVeiculos ("Seminovo"))
 
-    //     let veiculos = todos
-    //     for(let i = 0; i<veiculos.length;i++){
-    //         if(veiculos[i].classList.contains(`novo`)){
-    //             novo.style.display = ``
-    //             seminovo.style.display = `none`
-    //         }else if(veiculos[i].classList.contains(`seminovo`)) {
-    //             novo.style.display = `none`
-    //             seminovo.style.display = ``
-    //         } else if (veiculos[i].classList.contains(`todos`)){
-    //             novo.style.display = ``
-    //             seminovo.style.display = ``
-    //         }
-    //     }
-    // }
-    // btn_todos.addEventListener("click",()=>filtrarVeiculos("todos"))
-    // btn_novos.addEventListener('click',()=>filtrarVeiculos('novo')) 
-    // btn_seminovos.addEventListener("click",()=>filtrarVeiculos("seminovo"))
-
-
-
-
-
-    // btn_novos.addEventListener("click",()=>{
-    //     for(let i = 0; i<veiculo.length;i++){
-    //       if(veiculo[i].classList.contains(`novo`)){
-    //         veiculo[i].style.display = ``
-    //        }else{
-    //         veiculo[i].style.display = `none`
-    //      }
-    //     }
-    //    })
-       
-    // btn_seminovos.addEventListener("click",()=>{
-    //     for(let i = 0;i<veiculo.length;i++){
-    //     if(veiculo[i].classList.contains('seminovo')){
-    //      veiculo[i].style.display = ``
-    //     }else{
-    //       veiculo[i].style.display = `none`
-    //     }
-    // }
-        
-//   })    
+   
     
 </script>
 </body>
