@@ -376,6 +376,7 @@ p{
     const carrinhoClicado = [] 
     let carrinhoDeCompras = []
     const  resumoCarrinho = document.getElementById("resumo-carrinho")
+    let carrosDoCheckout = []
 
     btn_claro.addEventListener("click",()=>{
      document.body.style.backgroundColor = 'white'
@@ -426,11 +427,7 @@ p{
         window.location.href = 'index.html'
     })
 
-   for(const botao of btn_comprar){
-    botao.addEventListener("click",()=>{
 
-    })
-   }
   
  function renderizarCarrinho(){
     let novoHTML = "<h4> Seu Carrinho de Compras </h4>"; 
@@ -530,8 +527,26 @@ p{
      btn_novos.addEventListener("click",()=>filtrarVeiculos("Novo"))
      btn_seminovos.addEventListener("click",()=>filtrarVeiculos ("Seminovo"))
 
-   
-    
+   function iniciarCheckout(carro){
+    const veiculoClicado = event.target.closest(".veiculoNovo , .veiculoSeminovo")
+    extrairDadosDoCarro(veiculoClicado)
+    carrosDoCheckout.forEach(item=>{
+     let pagina = `<div class=paginaDoCheckout>
+        <p>Carro Selecionado - ${item.nome} ---------------------------- \n Ano do Carro - ${item.ano} \n --------------------------- Preço do Carro - ${item.preco} </p>
+        <button onclick = "removerItem('${item.id}')">X</button> 
+        </div> 
+        <hr> 
+     ` 
+    })
+
+   } 
+    for(const botao of btn_comprar){
+    botao.addEventListener("click",()=>{
+    const veiculoClicado = event.target.closest(".veiculoNovo , .veiculoSeminovo")
+      
+    })
+   }
+  
 </script>
 </body>
 </html>
